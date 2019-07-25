@@ -47,6 +47,25 @@ Make an array that contains all elements that appear more than twice in someRepe
 ```swift
 var someRepeatsAgain = [25,11,30,31,50,28,4,37,13,20,24,38,28,14,44,33,7,43,39,35,36,42,1,40,7,14,23,46,21,39,11,42,12,38,41,48,20,23,29,24,50,41,38,23,11,30,50,13,13,16,10,8,3,43,10,20,28,39,24,36,21,13,40,25,37,39,31,4,46,20,38,2,7,11,11,41,45,9,49,31,38,23,41,16,49,29,14,6,6,11,5,39,13,17,43,1,1,15,25]
 ```
+```swift
+
+var someRepeatsAgain = [25,11,30,31,50,28,4,37,13,20,24,38,28,14,44,33,7,43,39,35,36,42,1,40,7,14,23,46,21,39,11,42,12,38,41,48,20,23,29,24,50,41,38,23,11,30,50,13,13,16,10,8,3,43,10,20,28,39,24,36,21,13,40,25,37,39,31,4,46,20,38,2,7,11,11,41,45,9,49,31,38,23,41,16,49,29,14,6,6,11,5,39,13,17,43,1,1,15,25]
+var myDict = [Int:Int]()
+var anotherArray = Set<Int>()
+for i in someRepeatsAgain {
+if myDict.keys.contains(i) {
+myDict[i]! += 1
+}else {
+myDict[i] = 1
+}
+if myDict[i]! == 3{
+anotherArray.update(with: i)
+}
+}
+print(myDict)
+print(anotherArray.sorted())
+
+```
 
 ## Question 3
 
@@ -54,6 +73,19 @@ Identify if there are 3 integers in the following array that sum to 10. If so, p
 
 ```swift
 var tripleSumArr = [-20,-14, -8,-5,-3,-2,1,2,3,4,9,15,20,30]
+```
+```swift
+var tripleSumArr = [-20,-14, -8,-5,-3,-2,1,2,3,4,9,15,20,30]
+for a in tripleSumArr{
+for b in tripleSumArr {
+for c in tripleSumArr{
+if a + b + c == 10{
+print(a,b,c)
+}
+}
+}
+}
+
 ```
 
 
@@ -108,6 +140,25 @@ Input: [[2,4,1],[3,0],[9,3]]
 
 Output: [9,3]
 ```
+```swift
+var array = [[2,4,1],[3,0],[9,3]]
+var sum = Int()
+var another = Int()
+var myArray = [Int]()
+for i in array{
+for b in i {
+sum += b
+}
+if sum > another{
+another = sum
+myArray = i
+}
+sum = 0
+
+}
+print(another)
+print(myArray)
+```
 
 ## Question 5
 
@@ -121,6 +172,30 @@ struct ReceiptItem {
   let name: String
   let price: Double
 }
+```
+```swift
+struct Receipt {
+let storeName: String
+let items: [ReceiptItem]
+func totalCost()-> Double{
+var priceArray = [Double]()
+for i in items{
+priceArray.append(i.price)
+}
+return priceArray.reduce(0, +)
+}
+}
+
+struct ReceiptItem {
+let name: String
+let price: Double
+}
+
+var price = ReceiptItem(name: "a", price: 10)
+var price1 = ReceiptItem(name: "b", price: 20)
+var price2 = ReceiptItem(name: "c", price: 15)
+var total = Receipt(storeName: "nike", items: [price,price1,price2])
+print(total.totalCost())
 ```
 
 a. Given the structs above, add a method to `Receipt` that returns the total cost of all items
@@ -152,6 +227,27 @@ fred.name = "Brick"
 fred.weight = 999.2
 fred.homePlanet = "Mars"
 ```
+```swift
+class Giant {
+var name: String
+var weight: Double
+var homePlanet: String
+
+init(name: String, weight: Double, homePlanet: String) {
+self.name = name
+self.weight = weight
+self.homePlanet = homePlanet
+}
+}
+
+let fred = Giant(name: "Fred", weight: 340.0, homePlanet: "Earth")
+
+fred.name = "Brick"
+fred.weight = 999.2
+fred.homePlanet = "Mars"
+
+```
+the code didnt run because homePlanet was a constant
 
 b. Using the Giant class. What will the value of `edgar.name` be after the code below runs? How about `jason.name`? Explain why.
 
@@ -160,6 +256,7 @@ let edgar = Giant(name: "Edgar", weight: 520.0, homePlanet: "Earth")
 let jason = edgar
 jason.name = "Jason"
 ```
+because jason = edgar the values you put for jason changes the values in edgar.
 
 ## Question 7
 
@@ -177,6 +274,7 @@ struct BankAccount {
     }
 }
 ```
+
 
 a. Explain why the code above doesn't compile, then fix it.
 
@@ -233,6 +331,8 @@ library1.add(track: "Voodoo Child")
 let library2 = library
 library2.add(track: "Come As You Are")
 ```
+the values would be ["Michelle", "Voodoo Child", "Come As You Are"] 
+because we keep updated the values everytime you call library1 and 2
 
 ## Question 10
 
